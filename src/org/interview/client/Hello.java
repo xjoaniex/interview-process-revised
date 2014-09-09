@@ -49,7 +49,7 @@ public class Hello implements EntryPoint {
     VerticalPanel dialogVPanel = new VerticalPanel();
     
     Integer numberOfCompletedCall = new Integer(0);
-    final Label countCallLabel = new Label();
+    final Label countCallLabel = new Label("Number of calls: ");
     final Button countCallButton = new Button("Count Calls");
 	
     
@@ -125,14 +125,15 @@ public class Hello implements EntryPoint {
         // Add a handler to clear the DialogBox
         clearPersonButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                nameField.setText(" ");
+                personName.setText(" ");
+                personId.setText(" ");
             }
         });
 
         // Add a handler to display the number of succeeded calls
         countCallButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                countCallLabel.setText = Integer.toString(numberOfCompletedCall) ;
+                countCallLabel.setText = ("Number of calls: " + Integer.toString(numberOfCompletedCall)) ;
             }
         });
         
