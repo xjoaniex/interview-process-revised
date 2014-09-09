@@ -83,6 +83,8 @@ public class Hello implements EntryPoint {
 	 */
 	private final CountCallServiceAsync countCallService = GWT.create(CountCallService.class);
 	
+
+
 	/**
 	 * This is the entry point method.
 	 */
@@ -91,7 +93,7 @@ public class Hello implements EntryPoint {
 	    nameField.setText("Gwt User");
         // We can add style names to widgets
         sendButton.addStyleName("sendButton");
-        
+        sendButton.setStyle("background-color: #CD0000")
         // Focus the cursor on the name field when the app loads
         nameField.setFocus(true);
         nameField.selectAll();
@@ -117,6 +119,13 @@ public class Hello implements EntryPoint {
                 dialogBox.hide();
                 sendButton.setEnabled(true);
                 sendButton.setFocus(true);
+            }
+        });
+
+        // Add a handler to clear the DialogBox
+        clearPersonButton.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                nameField.setText(" ");
             }
         });
         
@@ -147,7 +156,7 @@ public class Hello implements EntryPoint {
                 errorLabel.setText("");
                 String textToServer = nameField.getText();
                 if (!FieldVerifier.isValidName(textToServer)) {
-                    errorLabel.setText("Please enter more than 4 caracters");
+                    errorLabel.setText("Please enter a name with more than 4 characters");
                     return;
                 }
 
@@ -169,7 +178,8 @@ public class Hello implements EntryPoint {
 
                             public void onSuccess(String result) {
                                 dialogBox.setText("Remote Procedure Call");
-                                serverResponseLabel.removeStyleName("serverResponseLabelError");
+                                numberOfCompletedCall += 1;
+serverResponseLabel.removeStyleName("serverResponseLabelError");
                                 serverResponseLabel.setHTML(result);
                                 dialogBox.center();
                                 closeButton.setFocus(true);
@@ -202,7 +212,7 @@ public class Hello implements EntryPoint {
         
         RootPanel.get("personContainer").add(personPanel);
 		
-		RootPanel.get("nameFieldContainer").add(nameField);
+	RootPanel.get("nameFieldContainer").add(nameField);
         RootPanel.get("sendButtonContainer").add(sendButton);
         RootPanel.get("sendButtonContainer").add(countCallButton);
         RootPanel.get("countCall").add(countCallLabel);
