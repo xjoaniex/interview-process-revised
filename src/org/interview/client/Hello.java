@@ -128,6 +128,13 @@ public class Hello implements EntryPoint {
                 nameField.setText(" ");
             }
         });
+
+        // Add a handler to display the number of succeeded calls
+        countCallButton.addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                countCallLabel.setText = Integer.toString(numberOfCompletedCall) ;
+            }
+        });
         
 
         // Create a handler for the sendButton and nameField
@@ -178,7 +185,6 @@ public class Hello implements EntryPoint {
 
                             public void onSuccess(String result) {
                                 dialogBox.setText("Remote Procedure Call");
-                                numberOfCompletedCall += 1;
 serverResponseLabel.removeStyleName("serverResponseLabelError");
                                 serverResponseLabel.setHTML(result);
                                 dialogBox.center();
